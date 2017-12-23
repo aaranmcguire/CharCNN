@@ -61,14 +61,7 @@ if __name__ == '__main__':
             print(values)
             print(boundaries)
             learning_rate = tf.train.piecewise_constant(global_step, boundaries, values)
-
-            #learning_rate = tf.train.exponential_decay(config.training.base_rate,
-            #                                           global_step,
-            #                                           config.training.decay_step,
-            #                                           config.training.decay_rate,
-            #                                           staircase=True)
-
-            #optimizer = tf.train.MomentumOptimizer(learning_rate, config.training.momentum)
+            print(learning_rate)
             optimizer = tf.train.AdamOptimizer(learning_rate)
             grads_and_vars = optimizer.compute_gradients(char_cnn.loss)
             train_op = optimizer.apply_gradients(grads_and_vars, global_step = global_step)
